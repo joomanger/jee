@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml">
+	<ui:define name="content">
+		<h:form>
+			<h:panelGrid columns="3">
+				<h:outputText value="Name" />
+				<h:inputText id="name" value="#{loginBean.name}"
+					pt:placeholder="Username"/>
+				<h:message id="m1" for="name" style="color:red" />
+				<h:outputText value="Password" />
+				<h:inputSecret id="pwd" value="#{loginBean.password}" />
+				<h:message id="m2" for="pwd" style="color:red" />
+			</h:panelGrid>
+			<h:commandButton value="Login" action="login"></h:commandButton>
+		</h:form>
+		<h:form>
+			<h:panelGrid columns="2">
+		  	Language : 
+				<h:selectOneMenu value="#{languageBean.localeCode}"
+					onchange="submit()"
+					valueChangeListener="#{languageBean.countryLocaleCodeChanged}">
+					<f:selectItems value="#{languageBean.countriesInMap}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
